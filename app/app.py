@@ -40,7 +40,7 @@ HEALTH_FILE = STATE_DIR / "healthy"
 READY_FILE.touch()
 HEALTH_FILE.touch()
 
-print(f"[boot] notes-api (starting) changed — version={__version__} LOG_LEVEL={LOG_LEVEL} PERSIST={PERSIST}")
+print(f"[boot] notes-api (starting) changed — version={__version__} LOG_LEVEL={LOG_LEVEL} PERSIST={PERSIST} changed message to check whether continuous deployment(cd) ->gitops is working ")
 
 _mem: list[dict] = []
 
