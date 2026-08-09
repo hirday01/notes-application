@@ -43,6 +43,7 @@
 pipeline {
 
     agent any
+    
 
     options {
         timestamps()
@@ -55,7 +56,7 @@ pipeline {
         // heard of GitHub, so you supply it — and lowercase matters: GHCR refuses
         // capitals in the owner segment.
         OWNER = 'hirday01'
-
+        SHA = ''
         // Deliberately NOT "notes-api". GHCR ties a package to the repo that first
         // published it, so reusing the CI lecture's package name gets you
         //     denied: permission_denied: write_package
@@ -156,6 +157,7 @@ pipeline {
                         docker push "$IMAGE:$SHA"
                         docker logout ghcr.io
                     '''
+                    
                 }
             }
         }
