@@ -56,7 +56,6 @@ pipeline {
         // heard of GitHub, so you supply it — and lowercase matters: GHCR refuses
         // capitals in the owner segment.
         OWNER = 'hirday01'
-        SHA = ''
         // Deliberately NOT "notes-api". GHCR ties a package to the repo that first
         // published it, so reusing the CI lecture's package name gets you
         //     denied: permission_denied: write_package
@@ -98,7 +97,8 @@ pipeline {
                     // Take the SHA from what checkout RETURNS. env.GIT_COMMIT is
                     // not populated in every job type, and when it isn't you get
                     // "Cannot invoke method take() on null object" on build #1.
-                    env.SHA = scmVars.GIT_COMMIT          // full 40 chars, like $GITHUB_SHA
+                    // env.SHA = scmVars.GIT_COMMIT          // full 40 chars, like $GITHUB_SHA
+                    env.SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
                 }
                 echo "Building ${env.IMAGE}:${env.SHA}"
             }
